@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.cloudera</groupId>
+	<groupId>ph.samson.fork</groupId>
 	<artifactId>spark-hbase</artifactId>
-	<version>0.0.2-clabs</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Spark HBase Integration</name>
@@ -29,12 +29,12 @@
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_2.10</artifactId>
-			<version>1.2.0-cdh5.3.0</version>
+			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-streaming_2.10</artifactId>
-			<version>1.2.0-cdh5.3.0</version>
+			<version>1.6.1</version>
 			<type>test-jar</type>
 			<classifier>tests</classifier>
 			<!-- <scope>test</scope> Return-->
@@ -42,17 +42,17 @@
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-streaming_2.10</artifactId>
-			<version>1.2.0-cdh5.3.0</version>
+			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-client</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-client</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 			<type>test-jar</type>
 			<classifier>tests</classifier>
 			<scope>test</scope>
@@ -60,30 +60,30 @@
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-server</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-server</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 			<type>test-jar</type>
 			<!-- <classifier>tests</classifier> Return-->
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-protocol</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-hadoop2-compat</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 			<!-- <scope>runtime</scope> --> 
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-hadoop2-compat</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 			<type>test-jar</type>
 			<classifier>tests</classifier>
 			<!-- <scope>test</scope> Return-->
@@ -91,12 +91,12 @@
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-common</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-common</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 			<type>test-jar</type>
 			<classifier>tests</classifier>
 			<!-- <scope>test</scope> Return-->
@@ -104,25 +104,23 @@
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-hadoop-compat</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 			<!-- <scope>test</scope> Return-->
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-hadoop-compat</artifactId>
-			<version>0.98.6-cdh5.3.0</version>
+			<version>1.1.2</version>
 			<type>test-jar</type>
 			<classifier>tests</classifier>
 			<!-- <scope>test</scope> Return-->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<version>2.7.1</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>maven-hadoop</id>
-			<name>Hadoop Releases</name>
-			<url>https://repository.cloudera.com/content/repositories/releases/</url>
-		</repository>
-	</repositories>
 
 	<build>
 		<outputDirectory>target/scala/classes</outputDirectory>
@@ -183,62 +181,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<shadedArtifactAttached>false</shadedArtifactAttached>
-					<outputFile>target/SparkHBase.jar</outputFile>
-					<artifactSet>
-						<includes>
-							<include>*:*</include>
-						</includes>
-					</artifactSet>
-					<filters>
-						<filter>
-							<artifact>*:*</artifact>
-							<excludes>
-								<exclude>META-INF/*.SF</exclude>
-								<exclude>META-INF/*.DSA</exclude>
-								<exclude>META-INF/*.RSA</exclude>
-							</excludes>
-						</filter>
-					</filters>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>reference.conf</resource>
-								</transformer>
-							</transformers>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
-
- <distributionManagement>
-    <repository>
-      <id>cdh.releases.repo</id>
-      <url>http://maven.jenkins.cloudera.com:8081/artifactory/cdh-staging-local</url>
-      <name>CDH Releases Repository</name>
-    </repository>
-    <snapshotRepository>
-      <id>cdh.snapshots.repo</id>
-      <url>http://maven.jenkins.cloudera.com:8081/artifactory/cdh-snapshot-local</url>
-      <name>CDH Snapshots Repository</name>
-    </snapshotRepository>
-  </distributionManagement>
 
 </project>
