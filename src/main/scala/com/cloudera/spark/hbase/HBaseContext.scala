@@ -227,6 +227,10 @@ class HBaseContext(@transient sc: SparkContext,
   }
 
   def logCredInformation[T] (credentials2:Credentials) {
+    if (!log.isInfoEnabled) {
+      return
+    }
+
     logInfo("credentials:" + credentials2);
     for (a <- 0 until credentials2.getAllSecretKeys.size()) {
       logInfo("getAllSecretKeys:" + a + ":" + credentials2.getAllSecretKeys.get(a));
