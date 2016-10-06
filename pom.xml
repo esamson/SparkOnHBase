@@ -2,16 +2,46 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>ph.samson</groupId>
+        <artifactId>parent</artifactId>
+        <version>2</version>
+    </parent>
+
 	<groupId>ph.samson.fork</groupId>
 	<artifactId>spark-hbase</artifactId>
 	<version>0.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Spark HBase Integration</name>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/esamson/SparkOnHBase</url>
+
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Edward Samson</name>
+            <id>esamson</id>
+            <url>http://edward.samson.ph</url>
+            <timezone>Asia/Manila</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/esamson/SparkOnHBase.git</connection>
+        <developerConnection>scm:git:git@github.com:esamson/SparkOnHBase.git</developerConnection>
+        <url>https://github.com/esamson/SparkOnHBase</url>
+        <tag>HEAD</tag>
+    </scm>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 
 	<dependencies>
